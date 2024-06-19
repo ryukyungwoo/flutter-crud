@@ -143,16 +143,19 @@ class Createpage extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () async {
+                
+                var createForm = {
+                  'title': titleController.text,
+                  'password': passwordController.text,
+                  'content': contentController.text,
+                };
+
                 await http.post(
                   Uri.parse('http://localhost:8080/create'),
                   headers: <String, String>{
                     'Content-Type': 'application/json; charset=UTF-8',
                   },
-                  body: jsonEncode(<String, String>{
-                    'title': titleController.text,
-                    'password': passwordController.text,
-                    'content': contentController.text,
-                  }),
+                  body: jsonEncode(createForm),
                 );
                 Navigator.pop(context);
           },
